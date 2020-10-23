@@ -1,0 +1,72 @@
+import{ 
+    Dashboard,
+    Login,
+    ArticleList,
+    ArticleEdit,
+    Settings,
+    NotFound,
+    Notifications,
+    NoAuth,
+    Profile
+}from '../views' 
+import React from 'react'
+import { DashboardOutlined,SettingOutlined,UnorderedListOutlined } from '@ant-design/icons';
+    
+    export const mainRouter=[
+        {
+          pathname:'/login',
+          component:Login
+    },
+    {
+        pathname:'/404',
+        component:NotFound
+  }
+
+]
+export const adminRouter=[
+    {
+      pathname:'/admin/dashboard',
+      component:Dashboard,
+      title:"仪表盘",
+      isNav:true,
+      icon:<DashboardOutlined/>,
+      roles:['001','002','003']
+     
+},  
+ {
+    pathname:'/admin/article',
+    component:ArticleList,
+    title:"文章管理",
+    isNav:true,
+    exact:true,
+    icon:<UnorderedListOutlined/>,
+    roles:['001','002']
+},{
+    pathname:'/admin/article/edit/:id',
+    component:ArticleEdit,
+    roles:['001','002']
+}, 
+{
+    pathname:'/admin/settings',
+    component:Settings,
+    title:"设置",
+    isNav:true,
+    icon:<SettingOutlined/>,
+    roles:['001']
+},
+{
+    pathname:'/admin/notifications',
+    component:Notifications,  
+    roles:['001','002','003']
+},
+{
+    pathname:'/admin/noAuth',
+    component:NoAuth,  
+    roles:['001','002','003']
+},
+{
+    pathname:'/admin/porfile',
+    component:Profile,  
+    roles:['001','002','003']
+}
+]
