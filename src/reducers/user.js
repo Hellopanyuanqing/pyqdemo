@@ -9,9 +9,13 @@ const initState={
 
 export default(state=initState,action)=>{
   
-//  console.log(userInfo);
+  console.log(action);
    switch(action.type){
-       
+      case actionTypes.GET_NEW_AVATAR:
+          return{
+              ...state,
+              avatar:action.payload.avatarUrl
+          }
        case actionTypes.START_LOGIN:
        
         return {

@@ -28,14 +28,16 @@ class App extends Component {
               key={route.pathname} 
               path={route.pathname} 
               exact={route.exact}
+              
               render={
                   (routeprops)=>{
                      const hasPermission=route.roles.includes(this.props.role)
-                    console.log(111);
+                     
                     return hasPermission?<route.component {...routeprops}/>:<Redirect to='/admin/noAuth'/>
                   }
                     
-              }/>
+              }
+              />
             })}
             <Redirect to={adminRouter[0].pathname} from='/admin' exact/>
             <Redirect to='/404' />

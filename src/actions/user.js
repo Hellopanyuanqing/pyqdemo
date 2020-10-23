@@ -24,6 +24,16 @@ const loginFailed=()=>{
     }
 }
 
+export const getNewAvatar=(avatarUrl)=>{
+      return{
+          type:actionTypes.GET_NEW_AVATAR,
+          payload:{
+            avatarUrl
+          }
+      }
+
+ }
+
 export const logout=()=>{
    return dispatch=>{
        dispatch(loginFailed())
