@@ -31,7 +31,7 @@ class App extends Component {
               render={
                   (routeprops)=>{
                      const hasPermission=route.roles.includes(this.props.role)
-                
+                    console.log(111);
                     return hasPermission?<route.component {...routeprops}/>:<Redirect to='/admin/noAuth'/>
                   }
                     
