@@ -9,15 +9,17 @@ const service=axios.create({
 const service1=axios.create({
     baseURL:isDev? 'http://rap2api.taobao.org/app/mock/268614':''
 })
-
+//添加请求拦截器
 service.interceptors.request.use(
     (config)=>{
+   
         config.data=Object.assign({},config.data,
             {authToken:'dadaodjaso'}
         )
         return config
 })
 
+//添加响应拦截器
 service.interceptors.response.use((res)=>{
 
    if(res.data.code===200){
@@ -27,30 +29,43 @@ service.interceptors.response.use((res)=>{
    }
   
 })
+//封装promise请求
+const RequestPost=(url,params)=>{
+    
+   return new Promise((resolve,reject)=>{
+    service.post(url,params).then(res=>{
+        resolve(res)
+    }).catch(err=>{
+        
+        reject(err)
+    })
+   });
+}
+
 //获取文章
 export const getArticles=(offset=0,limited=10)=>{
-
-    return service.post('/api/v1/article',{offset,limited})
+       return RequestPost('/api/v1/article',{offset,limited})
+    // return service.post('/api/v1/article',{offset,limited})
 }
 //删除文章
 export const deleteArticles=(id)=>{
-    return service.post(`/api/v1/deleteArticle/${id}`)
+    return RequestPost(`/api/v1/deleteArticle/${id}`)
 }
 //修改文章
 export const getEditArticles=(id)=>{
-    return service.post(`api/v1/editArticle/${id}`)
+    return RequestPost(`api/v1/editArticle/${id}`)
 }
 //保存文章
 export const SaveArticles=(id,data)=>{
-    return service.post(`api/v1/updateArticle/${id}`,data)
+    return RequestPost(`api/v1/updateArticle/${id}`,data)
 }
 //获取文章阅读量
 export const getArticlesAmount=()=>{
-    return service.post('api/v1/articleAmount')
+    return RequestPost('api/v1/articleAmount')
 }
 //获取通知列表
 export const getNotifiacations=()=>{
-    return service.post('/api/v1/notifications')
+    return RequestPost('/api/v1/notifications')
 }
 //登录接口
 export const login=(userInfo)=>{

@@ -27,7 +27,9 @@ class ArticleList extends Component {
       deleteArticleConfirmLoading:false,
       deleteArticleId:null,
      }
+     
    }
+  
 
 createColums=(columnKeys)=>{
 
@@ -65,6 +67,7 @@ createColums=(columnKeys)=>{
 
 }
 toEdit=(id)=>{
+
   this.props.history.push(`/admin/article/edit/${id}`)
 
   
@@ -228,6 +231,10 @@ getData=()=>{
             </Card>
         );
     }
+
+
+    
 }
+
 
 export default ArticleList;

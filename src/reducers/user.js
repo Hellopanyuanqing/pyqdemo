@@ -9,7 +9,7 @@ const initState={
 
 export default(state=initState,action)=>{
   
-  console.log(action);
+ 
    switch(action.type){
       case actionTypes.GET_NEW_AVATAR:
           return{
